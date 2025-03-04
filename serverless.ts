@@ -13,6 +13,7 @@ const serverlessConfiguration: AWS = {
     "serverless-esbuild",
     "serverless-prune-plugin",
     "serverless-appsync-plugin",
+    "serverless-python-requirements",
   ],
   provider: {
     name: "aws",
@@ -29,48 +30,46 @@ const serverlessConfiguration: AWS = {
     apiGateway: {
       minimumCompressionSize: 1024,
       shouldStartNameWithService: true,
-      metrics: true,
-      logs: {
-        restApi: {
-          accessLogging: true,
-          executionLogging: true,
-          level: "INFO",
-          fullExecutionData: true,
-        },
-      },
-      iam: {
-        role: "${cf:${self:service}-${self:provider.stage}-output.RoleLambda}",
-      },
-      httpApi: { cors: true },
-      environment: {
-        AWS_NODEJS_CONNECTION_REUSE_ENABLED: "1",
-        NODE_OPTIONS: "--enable-source-maps --stack-trace-limit=1000",
-      },
     },
-    // import the function via paths
-    functions: { hello },
-    package: {
-      individually: true,
-      exclude: ["node_modules/**"],
+    // logs: {
+    //   restApi: {
+    //     accessLogging: true,
+    //     executionLogging: true,
+    //     level: "INFO",
+    //     fullExecutionData: true,
+    //   },
+    // },
+    httpApi: { cors: true },
+    environment: {
+      AWS_NODEJS_CONNECTION_REUSE_ENABLED: "1",
+      NODE_OPTIONS: "--enable-source-maps --stack-trace-limit=1000",
     },
-    configValidationMode: "error",
-    appSync: appsyncConfig,
-    custom: {
-      esbuild: {
-        bundle: true,
-        minify: true,
-        sourcemap: true,
-        exclude: ["aws-sdk"],
-        target: "node20",
-        define: { "require.resolve": undefined },
-        platform: "node",
-        concurrency: 10,
-      },
-      defaultStage: defaultStage,
-      defaultRegion: defaultRegion,
+  },
+  // import the function via paths
+  functions: { hello },
+  package: {
+    individually: true,
+    exclude: ["node_modules/**"],
+  },
+  configValidationMode: "error",
+  appSync: appsyncConfig,
+  custom: {
+    pythonRequirements: {
+      dockerizePip: true,
     },
-    // stepFunctions: stepFunctions,
-  } as any,
-};
+    esbuild: {
+      bundle: true,
+      minify: true,
+      sourcemap: true,
+      exclude: ["aws-sdk"],
+      target: "node20",
+      define: { "require.resolve": undefined },
+      platform: "node",
+      concurrency: 10,
+    },
+    defaultStage: defaultStage,
+    defaultRegion: defaultRegion,
+  },
+} as any;
 
 module.exports = serverlessConfiguration;

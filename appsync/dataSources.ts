@@ -5,37 +5,20 @@ export const dataSources = {
     description: "TableUsersDatasource",
     config: {
       tableName:
-        "${cf:${self:service}-${self:provider.stage}-output.DynamoDBTableUsers}",
+        "${cf:${self:service}-${self:provider.stage}-output.TableUsers}",
       serviceRoleArn:
-        "${cf:${self:service}-${self:provider.stage}-output.AppSyncRole}",
+        "${cf:${self:service}-${self:provider.stage}-output.RoleAppSync}",
     },
   },
-  TableProjectsDatasource: {
+  TableProductsDatasource: {
     type: "AMAZON_DYNAMODB",
-    name: "TableProjectsDatasource",
-    description: "TableProjectsDatasource",
+    name: "TableProductsDatasource",
+    description: "TableProductsDatasource",
     config: {
       tableName:
-        "${cf:${self:service}-${self:provider.stage}-output.DynamoDBTableProjects}",
+        "${cf:${self:service}-${self:provider.stage}-output.TableProducts}",
       serviceRoleArn:
-        "${cf:${self:service}-${self:provider.stage}-output.AppSyncRole}",
-    },
-  },
-  StepFunctionCreateInfrastructureDataSource: {
-    type: "HTTP",
-    name: "StepFunctionsDataSource",
-    description: "Data source per comunicare con AWS Step Functions",
-    config: {
-      endpoint: "https://states.${self:provider.region}.amazonaws.com",
-      serviceRoleArn:
-        "${cf:${self:service}-${self:provider.stage}-output.AppSyncRole}",
-      authorizationConfig: {
-        authorizationType: "AWS_IAM",
-        awsIamConfig: {
-          signingRegion: "${self:provider.region}",
-          signingServiceName: "states",
-        },
-      },
+        "${cf:${self:service}-${self:provider.stage}-output.RoleAppSync}",
     },
   },
 };

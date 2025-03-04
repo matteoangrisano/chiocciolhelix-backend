@@ -10,10 +10,12 @@
     "node": ">=14.15.0"
   },
   "dependencies": {
+    "@aws-appsync/utils": "^1.12.0",
     "@middy/core": "^3.4.0",
     "@middy/http-json-body-parser": "^3.4.0",
     "serverless-appsync-plugin": "^2.9.1",
-    "serverless-prune-plugin": "^2.1.0"
+    "serverless-prune-plugin": "^2.1.0",
+    "serverless-python-requirements": "^6.1.2"
   },
   "devDependencies": {
     "@serverless/typescript": "^3.0.0",
