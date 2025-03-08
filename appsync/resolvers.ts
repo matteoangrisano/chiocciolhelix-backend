@@ -2,19 +2,19 @@ const queriesFolder = "mappingTemplates/queries";
 const mutationsFolder = "mappingTemplates/mutations";
 
 const resolvers = {
-  "Query.getProducts": {
+  "Query.productList": {
     functions: [
       {
         dataSource: "TableProductsDatasource",
-        code: `${queriesFolder}/getProducts.ts`,
+        code: `${queriesFolder}/productList.ts`,
       },
     ],
   },
-  "Mutation.createProduct": {
+  "Mutation.productAdd": {
     functions: [
       {
         dataSource: "TableProductsDatasource",
-        code: `${mutationsFolder}/createProduct.ts`,
+        code: `${mutationsFolder}/productAdd.ts`,
       },
     ],
   },

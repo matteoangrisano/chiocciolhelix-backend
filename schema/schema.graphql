@@ -4,14 +4,14 @@ schema {
 }
 
 type Query {
-  getProducts: [Product]
+  productList: [Product] @aws_api_key
 }
 
 type Mutation {
-  createProduct(input: CreateProductInput!): Product
+  productAdd(input: ProductAddInput!): Product
 }
 
-type Product {
+type Product @aws_api_key {
   id: ID!
   name: String!
   price: Float!
@@ -23,7 +23,7 @@ enum UnitType {
   pezzo
 }
 
-input CreateProductInput {
+input ProductAddInput {
   name: String!
   price: Float!
   unitType: UnitType!
