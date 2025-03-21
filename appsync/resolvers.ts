@@ -10,11 +10,27 @@ const resolvers = {
       },
     ],
   },
-  "Mutation.productAdd": {
+  "Query.orderList": {
+    functions: [
+      {
+        dataSource: "TableOrdersDatasource",
+        code: `${queriesFolder}/orderList.ts`,
+      },
+    ],
+  },
+  "Mutation.orderCreate": {
+    functions: [
+      {
+        dataSource: "TableOrdersDatasource",
+        code: `${mutationsFolder}/orderCreate.ts`,
+      },
+    ],
+  },
+  "Mutation.productCreate": {
     functions: [
       {
         dataSource: "TableProductsDatasource",
-        code: `${mutationsFolder}/productAdd.ts`,
+        code: `${mutationsFolder}/productCreate.ts`,
       },
     ],
   },

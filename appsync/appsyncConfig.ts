@@ -12,12 +12,18 @@ const appsyncConfig = {
         "${cf:${self:service}-${self:provider.stage}-output.CognitoUserPoolIdUsers}",
     },
   },
-  additionalAuthentications: [
-    {
-      type: "AWS_IAM",
-    },
-    { type: "API_KEY" },
-  ],
+  // additionalAuthentications: [
+  //   {
+  //     type: "AWS_IAM",
+  //   },
+  //   {
+  //     type: "API_KEY",
+  //     config: {
+  //       description: "mobile",
+  //       expiresAfter: "365d",
+  //     },
+  //   },
+  // ],
   logging: {
     loggingRoleArn:
       "${cf:${self:service}-${self:provider.stage}-output.RoleAppSync}",

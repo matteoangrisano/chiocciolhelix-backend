@@ -4,17 +4,45 @@ schema {
 }
 
 type Query {
-  productList: [Product] @aws_api_key
+  productList: [Product]
+  orderList(customerEmail: String, status: OrderStatus): [Order]
 }
 
 type Mutation {
-  productAdd(input: ProductAddInput!): Product
+  productCreate(input: ProductCreateInput!): Product
+  orderCreate(input: OrderCreateInput!): Order
 }
 
-type Product @aws_api_key {
+type Product {
   id: ID!
   name: String!
+  category: String!
   price: Float!
+  unitType: UnitType!
+}
+
+enum OrderStatus {
+  PENDING
+  PROCESSING
+  COMPLETED
+  CANCELLED
+}
+
+type Order {
+  id: ID!
+  customerEmail: String!
+  items: [OrderItem!]!
+  totalPrice: Float!
+  status: OrderStatus!
+  createdAt: String!
+}
+
+type OrderItem {
+  productId: ID!
+  productName: String!
+  quantity: Float!
+  unitPrice: Float!
+  totalPrice: Float!
   unitType: UnitType!
 }
 
@@ -23,8 +51,25 @@ enum UnitType {
   pezzo
 }
 
-input ProductAddInput {
+input ProductCreateInput {
   name: String!
+  category: String!
   price: Float!
+  unitType: UnitType!
+}
+
+input OrderCreateInput {
+  customerEmail: String!
+  items: [OrderItemInput!]!
+  totalPrice: Float!
+  status: OrderStatus
+}
+
+input OrderItemInput {
+  productId: ID!
+  productName: String!
+  quantity: Float!
+  unitPrice: Float!
+  totalPrice: Float!
   unitType: UnitType!
 }

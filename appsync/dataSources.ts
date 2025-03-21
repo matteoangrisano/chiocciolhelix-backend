@@ -21,6 +21,17 @@ export const dataSources = {
         "${cf:${self:service}-${self:provider.stage}-output.RoleAppSync}",
     },
   },
+  TableOrdersDatasource: {
+    type: "AMAZON_DYNAMODB",
+    name: "TableOrdersDatasource",
+    description: "TableOrdersDatasource",
+    config: {
+      tableName:
+        "${cf:${self:service}-${self:provider.stage}-output.TableOrders}",
+      serviceRoleArn:
+        "${cf:${self:service}-${self:provider.stage}-output.RoleAppSync}",
+    },
+  },
 };
 
 export default dataSources;
