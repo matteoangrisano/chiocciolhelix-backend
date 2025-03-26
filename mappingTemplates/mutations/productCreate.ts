@@ -2,14 +2,16 @@ import { util } from "@aws-appsync/utils";
 import * as ddb from "@aws-appsync/utils/dynamodb";
 
 export function request(ctx) {
-  const { name, price, unitType, category } = ctx.arguments.input;
+  const { name, price, unitType, category, availability } = ctx.arguments.input;
+
   const id = util.autoId();
   const item = {
     id,
-    name,
-    price,
+    name: name.toLowerCase(),
+    price: price,
     unitType,
-    category,
+    category: category.toLowerCase(),
+    availability: availability !== undefined ? availability : true,
     createdAt: util.time.nowISO8601(),
     updatedAt: util.time.nowISO8601(),
   };

@@ -19,6 +19,7 @@ type Product {
   category: String!
   price: Float!
   unitType: UnitType!
+  availability: Boolean
 }
 
 enum OrderStatus {
@@ -56,6 +57,7 @@ input ProductCreateInput {
   category: String!
   price: Float!
   unitType: UnitType!
+  availability: Boolean
 }
 
 input OrderCreateInput {
