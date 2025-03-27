@@ -10,7 +10,9 @@ type Query {
 
 type Mutation {
   productCreate(input: ProductCreateInput!): Product
+  productUpdate(id: ID!, input: ProductUpdateInput!): Product
   orderCreate(input: OrderCreateInput!): Order
+  orderUpdate(orderId: ID!, status: OrderStatus!): Order
 }
 
 type Product {
@@ -57,6 +59,11 @@ input ProductCreateInput {
   category: String!
   price: Float!
   unitType: UnitType!
+  availability: Boolean
+}
+
+input ProductUpdateInput {
+  price: Float
   availability: Boolean
 }
 

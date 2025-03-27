@@ -26,11 +26,27 @@ const resolvers = {
       },
     ],
   },
+  "Mutation.orderUpdate": {
+    functions: [
+      {
+        dataSource: "TableOrdersDatasource",
+        code: `${mutationsFolder}/orderUpdate.ts`,
+      },
+    ],
+  },
   "Mutation.productCreate": {
     functions: [
       {
         dataSource: "TableProductsDatasource",
         code: `${mutationsFolder}/productCreate.ts`,
+      },
+    ],
+  },
+  "Mutation.productUpdate": {
+    functions: [
+      {
+        dataSource: "TableProductsDatasource",
+        code: `${mutationsFolder}/productUpdate.ts`,
       },
     ],
   },
