@@ -52,6 +52,7 @@ type OrderItem {
 enum UnitType {
   kg
   pezzo
+  mazzo
 }
 
 input ProductCreateInput {
