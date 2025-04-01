@@ -50,5 +50,13 @@ const resolvers = {
       },
     ],
   },
+  "Mutation.deleteProduct": {
+    functions: [
+      {
+        dataSource: "TableProductsDatasource",
+        code: `${mutationsFolder}/productDelete.ts`,
+      },
+    ],
+  },
 };
 export default resolvers;

@@ -11,6 +11,7 @@ type Query {
 type Mutation {
   productCreate(input: ProductCreateInput!): Product
   productUpdate(id: ID!, input: ProductUpdateInput!): Product
+  deleteProduct(id: ID!): Product
   orderCreate(input: OrderCreateInput!): Order
   orderUpdate(orderId: ID!, status: OrderStatus!): Order
 }
